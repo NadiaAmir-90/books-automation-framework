@@ -16,9 +16,7 @@ load_dotenv()
 def browser() -> Browser:
     """Launch one browser for the entire test session."""
     with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(
-            headless=False
-        )
+        browser = playwright.chromium.launch(headless=True)
 
         yield browser
 
