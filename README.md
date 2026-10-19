@@ -5,6 +5,22 @@ This project implements a reusable UI automation framework using Python, Playwri
 
 The framework validates the Books to Scrape catalogue and the Quotes to Scrape demo login flow. It includes navigation checks, data consistency validation, hyperlink verification, image validation, pagination, automated reporting, and continuous integration.
 
+### How to run
+Create and activate a virtual environment:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Install dependencies and Chromium:
+
+```bash
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python -m playwright install chromium
+```
+
 
 ## 2. Features
 
@@ -35,22 +51,6 @@ The framework validates the Books to Scrape catalogue and the Quotes to Scrape d
 - Requests
 - Docker
 - GitHub Actions
-
-
-Create and activate a virtual environment:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-Install dependencies and Chromium:
-
-```bash
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-python -m playwright install chromium
-```
 
 ## 4. Environment Setup
 
