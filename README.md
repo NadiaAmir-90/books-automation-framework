@@ -1,10 +1,10 @@
-# Enterprise UI Automation Framework – Books to Scrape
 
 ## 1. Project Overview
 
 This project implements a reusable UI automation framework using Python, Playwright, and Pytest.
 
 The framework validates the Books to Scrape catalogue and the Quotes to Scrape demo login flow. It includes navigation checks, data consistency validation, hyperlink verification, image validation, pagination, automated reporting, and continuous integration.
+
 
 ## 2. Features
 
@@ -36,54 +36,6 @@ The framework validates the Books to Scrape catalogue and the Quotes to Scrape d
 - Docker
 - GitHub Actions
 
-## 4. Project Structure
-
-```text
-enterprise-books-automation/
-├── .github/
-│   └── workflows/
-│       └── playwright.yml
-├── config/
-│   └── settings.py
-├── pages/
-│   ├── books_page.py
-│   ├── book_details_page.py
-│   └── quotes_login_page.py
-├── tests/
-│   ├── books/
-│   │   ├── test_homepage.py
-│   │   ├── test_book_navigation.py
-│   │   ├── test_book_consistency.py
-│   │   ├── test_broken_links.py
-│   │   └── test_product_images.py
-│   └── quotes/
-│       └── test_login_logout.py
-├── utils/
-│   └── url_utils.py
-├── conftest.py
-├── pytest.ini
-├── requirements.txt
-├── Dockerfile
-├── .dockerignore
-├── .gitignore
-└── README.md
-```
-
-## 5. Installation Guide
-
-Requirements:
-
-- Python 3.12
-- Git
-- Docker (optional for containerized execution)
-- Java and Allure CLI for generating Allure HTML reports
-
-Clone the repository:
-
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-cd enterprise-books-automation
-```
 
 Create and activate a virtual environment:
 
@@ -100,23 +52,19 @@ python -m pip install -r requirements.txt
 python -m playwright install chromium
 ```
 
-## 6. Environment Setup
+## 4. Environment Setup
 
 The framework uses the following demo websites:
 
 - Books: https://books.toscrape.com/index.html
 - Quotes: https://quotes.toscrape.com/
 
-Optional login configuration can be supplied using environment variables:
-
 ```bash
 export QUOTES_USERNAME="your_verified_test_username"
 export QUOTES_PASSWORD="your_verified_test_password"
 ```
 
-Use only verified demo credentials. Never commit private credentials to Git.
-
-## 7. Running Tests
+## 5. Running Tests
 
 Run the complete test suite:
 
@@ -136,7 +84,7 @@ Run tests with a visible browser:
 python -m pytest tests/books/test_homepage.py --headed
 ```
 
-## 8. Test Case Coverage
+## 6. Test Case Coverage
 
 | Test case | Validation |
 |---|---|
@@ -147,9 +95,7 @@ python -m pytest tests/books/test_homepage.py --headed
 | TC-05 | Product image attributes, loading and pagination |
 | TC-06 | Quotes demo login flow and logout link |
 
-## 9. Report Generation
-
-Generate HTML and Allure results:
+## 7. Report Generation
 
 ```bash
 mkdir -p reports
@@ -161,7 +107,7 @@ python -m pytest \
   --clean-alluredir
 ```
 
-## 10. HTML Report Guide
+## 8. HTML Report Guide
 
 The HTML report is generated at:
 
@@ -172,10 +118,7 @@ Open it locally:
 ```bash
 xdg-open reports/report.html
 ```
-
-The report contains test outcomes and failure details.
-
-## 11. Allure Report Guide
+## 9. Allure Report Guide
 
 Install Java and Allure CLI before generating the report.
 
@@ -191,7 +134,7 @@ allure open allure-report
 
 Allure results and the generated Allure HTML report are separate outputs.
 
-## 12. Docker Execution
+## 10. Docker Execution
 
 Build the image:
 
@@ -208,7 +151,7 @@ docker run --rm \
   books-automation
 ```
 
-## 13. GitHub Actions Setup
+## 11. GitHub Actions Setup
 
 The workflow is located at:
 
@@ -220,38 +163,7 @@ The pipeline installs dependencies, installs Chromium, executes tests, generates
 
 To inspect a run, open the repository's Actions tab, select the workflow run, and download the generated artifacts.
 
-## 14. Design Decisions
-
-### Page Object Model
-
-Page classes encapsulate locators and browser actions. Tests focus on expected behavior and assertions.
-
-### Fixtures
-
-Pytest fixtures provide isolated browser pages and reusable test setup.
-
-### DRY and SOLID
-
-Shared logic is implemented once and reused. Each page object has a focused responsibility, while configuration, utilities, tests, and reporting remain separated.
-
-### Synchronization
-
-Playwright's auto-waiting and web-first assertions are preferred over fixed sleeps.
-
-### Randomized testing
-
-Five distinct book indices are selected per navigation and consistency test. Failures should record enough information to identify the selected book.
-
-## 15. Known Limitations
-
-- The target websites are external dependencies and may occasionally be unavailable.
-- External hyperlinks can fail because of rate limits, network restrictions, or server policies.
-- Randomized selection can make failures harder to reproduce unless a seed is recorded.
-- Demo login behavior must be verified against the current website.
-- A successful HTTP response does not guarantee that a page is functionally correct.
-- Allure HTML generation requires the Allure command-line tool.
-
-## 16. CI/CD Artifacts
+## 12. CI/CD Artifacts
 
 The GitHub Actions workflow uploads available:
 
@@ -263,10 +175,3 @@ The GitHub Actions workflow uploads available:
 - Videos
 - Trace files
 
-## 17. Maintenance
-
-1. Keep dependencies under version control.
-2. Update page-object locators when the website structure changes.
-3. Run relevant tests locally before pushing changes.
-4. Review CI artifacts after failures.
-5. Keep secrets and generated files out of Git.
