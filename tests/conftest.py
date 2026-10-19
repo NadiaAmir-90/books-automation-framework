@@ -7,6 +7,9 @@ from playwright.sync_api import (
     Playwright,
     sync_playwright,
 )
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 @pytest.fixture(scope="session")
@@ -27,7 +30,7 @@ def context(browser: Browser) -> BrowserContext:
     """Create an isolated browser context for each test."""
     context = browser.new_context(
         viewport={"width": 1366, "height": 768},
-        ignore_https_errors=False,
+        ignore_https_errors=True,
     )
 
     yield context

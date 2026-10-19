@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Environment secrets
+.env
+
+# Test outputs
+.pytest_cache/
+reports/
+allure-results/
+allure-report/
+test-results/
+screenshots/
+videos/
+traces/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store

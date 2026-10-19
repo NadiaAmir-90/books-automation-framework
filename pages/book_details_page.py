@@ -7,7 +7,7 @@ class BookDetailsPage:
     def __init__(self, page: Page):
         self.page = page
 
-        self.ttile=page.locator("div.product_main h1")
+        self.title=page.locator("div.product_main h1")
         self.price=page.locator("div.product_main .price_color")
         self.product_information= page.locator( "table.table.table-striped")
         self.description= page.locator("#product_description + p")

@@ -1,0 +1,9 @@
+playwright
+pytest
+pytest-playwright
+pytest-html
+allure-pytest
+requests
+python-dotenv
+pytest-timeout
+allure-pytest

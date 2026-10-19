@@ -9,9 +9,9 @@ class QuotesLoginPage:
         
         self.page = page
 
-        self.login=page.locator("link", name="Login")
-        self.username = page.locator("#username")
-        self.username = page.locator("#password")
+        self.login_link=page.get_by_role("link", name="Login")
+        self.username= page.locator("#username")
+        self.password= page.locator("#password")
 
         self.submit_button= page.get_by_role("button", name="Login")
         self.logout_link= page.get_by_role("link", name="Logout")
