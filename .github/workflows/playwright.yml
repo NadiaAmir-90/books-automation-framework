@@ -1,3 +1,4 @@
+
 name: Playwright UI Automation
 
 on:
@@ -75,6 +76,44 @@ jobs:
             echo "No Allure results were generated."
           fi
 
+      - name: Prepare GitHub Pages site
+        if: always()
+        run: |
+          mkdir -p public/playwright public/allure
+
+          if [ -f reports/report.html ]; then
+            cp reports/report.html public/playwright/index.html
+          fi
+
+          if [ -f allure-report/index.html ]; then
+            cp -a allure-report/. public/allure/
+          fi
+
+          cat > public/index.html <<'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Automation Test Reports</title>
+          </head>
+          <body>
+            <h1>Automation Test Reports</h1>
+            <ul>
+              <li><a href="./playwright/">Playwright HTML Report</a></li>
+              <li><a href="./allure/">Allure Report</a></li>
+            </ul>
+          </body>
+          </html>
+          EOF
+
+      - name: Upload reports for GitHub Pages
+        if: always() && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          name: github-pages
+          path: public
+
       - name: Upload test reports and artifacts
         if: always()
         uses: actions/upload-artifact@v4
@@ -93,3 +132,21 @@ jobs:
       - name: Fail workflow if tests failed
         if: steps.pytest.outcome == 'failure'
         run: exit 1
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    if: always() && github.event_name != 'pull_request' && needs.test.result != 'cancelled'
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy reports to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
