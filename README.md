@@ -5,7 +5,60 @@ This project implements a reusable UI automation framework using Python, Playwri
 
 The framework validates the Books to Scrape catalogue and the Quotes to Scrape demo login flow. It includes navigation checks, data consistency validation, hyperlink verification, image validation, pagination, automated reporting, and continuous integration.
 
-## 2. How to run
+## 2. Features
+
+- Homepage URL and title validation
+- Visible heading validation
+- Random selection and navigation of five books
+- Book title and price consistency checks
+- Unique hyperlink response validation
+- Product image attribute and loading validation
+- Pagination testing for up to five pages
+- Demo login and logout link validation
+- Reusable Page Object Model classes
+- Pytest fixtures and modular tests
+- HTML reports using pytest-html
+- Allure test results and HTML reports
+- Failure screenshots, videos, and traces
+- Docker-based execution
+- GitHub Actions CI/CD integration
+
+## 3. Tech Stack
+
+- Python 3.12
+- Playwright
+- Pytest
+- pytest-playwright
+- pytest-html
+- Allure Pytest integration
+- Requests
+- Docker
+- GitHub Actions
+
+## 4. Test Case Coverage
+
+| Test case | Validation |
+|---|---|
+| TC-01 | Homepage URL, title, headings and books |
+| TC-02 | Navigation to five randomly selected books |
+| TC-03 | Title and price consistency for five books |
+| TC-04 | Unique homepage hyperlinks return HTTP 200 |
+| TC-05 | Product image attributes, loading and pagination |
+| TC-06 | Quotes demo login flow and logout link |
+
+## 5. Environment Setup
+
+The framework uses the following demo websites:
+
+- Books: https://books.toscrape.com/index.html
+- Quotes: https://quotes.toscrape.com/
+
+```bash
+export QUOTES_USERNAME="your_verified_test_username"
+export QUOTES_PASSWORD="your_verified_test_password"
+```
+
+## 6. How to run
 Create and activate a virtual environment:
 
 ```bash
@@ -39,59 +92,6 @@ Run tests with a visible browser:
 ```bash
 python -m pytest tests/books/test_homepage.py --headed
 ```
-
-## 3. Features
-
-- Homepage URL and title validation
-- Visible heading validation
-- Random selection and navigation of five books
-- Book title and price consistency checks
-- Unique hyperlink response validation
-- Product image attribute and loading validation
-- Pagination testing for up to five pages
-- Demo login and logout link validation
-- Reusable Page Object Model classes
-- Pytest fixtures and modular tests
-- HTML reports using pytest-html
-- Allure test results and HTML reports
-- Failure screenshots, videos, and traces
-- Docker-based execution
-- GitHub Actions CI/CD integration
-
-## 4. Tech Stack
-
-- Python 3.12
-- Playwright
-- Pytest
-- pytest-playwright
-- pytest-html
-- Allure Pytest integration
-- Requests
-- Docker
-- GitHub Actions
-
-## 5. Environment Setup
-
-The framework uses the following demo websites:
-
-- Books: https://books.toscrape.com/index.html
-- Quotes: https://quotes.toscrape.com/
-
-```bash
-export QUOTES_USERNAME="your_verified_test_username"
-export QUOTES_PASSWORD="your_verified_test_password"
-```
-
-## 6. Test Case Coverage
-
-| Test case | Validation |
-|---|---|
-| TC-01 | Homepage URL, title, headings and books |
-| TC-02 | Navigation to five randomly selected books |
-| TC-03 | Title and price consistency for five books |
-| TC-04 | Unique homepage hyperlinks return HTTP 200 |
-| TC-05 | Product image attributes, loading and pagination |
-| TC-06 | Quotes demo login flow and logout link |
 
 ## 7. Report Generation
 
